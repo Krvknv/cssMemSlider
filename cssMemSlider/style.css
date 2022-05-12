@@ -1,0 +1,18 @@
+/* 
+.radio {
+  appearance: none;
+  box-sizing: border-box;
+  margin: 10px;
+  cursor: pointer;
+  border: 2px solid green;
+  padding: 20px;
+} */
+#wrapTrigger {
+  display: none;
+}
+.wrap {
+  color: red;
+}
+input:checked + .wrap {
+  color: blue;
+}
