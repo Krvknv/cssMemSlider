@@ -6,31 +6,11 @@ body {
 input {
   display: none;
 }
-.photo {
-  box-sizing: border-box;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 0;
-  height: 0;
-}
-#food {
-  background: url("./asset/img/food.jpg");
-}
-#people {
-  background: url("./asset/img/people.jpg");
-}
-#studying {
-  background: url("./asset/img/studying.jpg");
-}
-
-#suffering {
-  background: url("./asset/img/suffering.jpg");
-  margin-bottom: 20px;
-}
-
 .wrapper {
-  max-width: 1020px;
+  padding: 0 20px;
+  max-width: 1000px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   text-align: center;
   display: inline-flex;
@@ -38,6 +18,23 @@ input {
   padding-top: 40px;
 }
 
+.photos {
+  margin-bottom: 40px;
+}
+
+#food-img,
+#people-img,
+#studying-img,
+#suffering-img {
+  width: 0;
+  height: 0;
+  display: none;
+}
+.controls__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
 .text {
   font-size: 0px;
   text-align: left;
@@ -47,6 +44,7 @@ input {
   display: flex;
   gap: 10px;
   justify-content: end;
+  max-width: 100%;
 }
 label {
   box-sizing: border-box;
@@ -59,6 +57,9 @@ label {
   justify-content: center;
   align-items: center;
 }
+label:hover span {
+  background-color: #fff;
+}
 .span {
   display: block;
   width: 20px;
@@ -67,39 +68,68 @@ label {
   background-color: #49296a;
   border-radius: 100%;
 }
-#input-for-food:checked ~ .labels label:nth-child(1) .span,
-#input-for-people:checked ~ .labels label:nth-child(2) .span,
-#input-for-studying:checked ~ .labels label:nth-child(3) .span,
-#input-for-suffering:checked ~ .labels label:nth-child(4) .span {
+@keyframes slider {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes sliderText {
+  0% {
+    opacity: 0;
+    transform: translateX(70px);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+#input-for-food:checked ~ .controls__wrapper .labels label:nth-child(1) .span,
+#input-for-people:checked ~ .controls__wrapper .labels label:nth-child(2) .span,
+#input-for-studying:checked
+  ~ .controls__wrapper
+  .labels
+  label:nth-child(3)
+  .span,
+#input-for-suffering:checked
+  ~ .controls__wrapper
+  .labels
+  label:nth-child(4)
+  .span {
   background-color: transparent;
 }
 
-/* #input-for-food:checked ~ .labels label:nth-child(1),
-#input-for-people:checked ~ .labels label:nth-child(2),
-#input-for-studying:checked ~ .labels label:nth-child(3),
-#input-for-suffering:checked ~ .labels label:nth-child(4) {
-  background-color: transparent;
-} */
+#input-for-food:checked ~ .photos #food img,
+#input-for-people:checked ~ .photos #people img,
+#input-for-studying:checked ~ .photos #studying img,
+#input-for-suffering:checked ~ .photos #suffering img {
+  animation: slider 2s;
+  width: 100%;
+  height: auto;
+  display: block;
+  -webkit-box-shadow: 0px 17px 17px 3px rgba(114, 114, 114, 0.6);
+  -moz-box-shadow: 0px 17px 17px 3px rgba(114, 114, 114, 0.6);
+  box-shadow: 0px 17px 17px 3px rgba(114, 114, 114, 0.6);
+}
+#input-for-food:checked ~ .controls__wrapper .texts .food,
+#input-for-people:checked ~ .controls__wrapper .texts .people,
+#input-for-studying:checked ~ .controls__wrapper .texts .studying,
+#input-for-suffering:checked ~ .controls__wrapper .texts .suffering {
+  font-size: 1.7em;
+  animation: sliderText 2s;
+}
 
-#input-for-food:checked ~ #food,
-#input-for-people:checked ~ #people,
-#input-for-studying:checked ~ #studying,
-#input-for-suffering:checked ~ #suffering {
-  width: 1000px;
-  height: 750px;
-  /* font-size: 25px; */
+@media screen and (max-width: 737px) {
+  .controls__wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .labels {
+    margin-bottom: 10px;
+  }
 }
-#input-for-food:checked ~ .food,
-#input-for-people:checked ~ .people,
-#input-for-studying:checked ~ .studying,
-#input-for-suffering:checked ~ .suffering {
-  font-size: 25px;
-}
-/* .input__wrapper > #input-for-food:checked ~ .food,
-.input__wrapper > #input-for-people:checked ~ .people,
-.input__wrapper > #input-for-studying:checked ~ .studying,
-.input__wrapper > #input-for-suffering:checked ~ .suffering {
-  width: 1000px;
-  height: 750px;
-  font-size: 25px;
-} */
