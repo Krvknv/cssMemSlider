@@ -1,0 +1,151 @@
+body {
+  background-color: #b3a1b9;
+  display: flex;
+  margin: 0 auto;
+}
+input {
+  display: none;
+}
+.wrapper {
+  padding: 0 20px;
+  max-width: 1000px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-flex;
+  flex-direction: column;
+  padding-top: 40px;
+}
+
+.photos {
+  margin-bottom: 40px;
+}
+
+#food-img,
+#people-img,
+#studying-img,
+#suffering-img {
+  width: 0;
+  height: 0;
+  display: none;
+}
+.controls__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.labels {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  max-width: 100%;
+}
+label {
+  box-sizing: border-box;
+  display: flex;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  cursor: pointer;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+label:hover span {
+  background-color: #f0c4ff;
+}
+label:active span {
+  background-color: #2f0d4f;
+}
+.span {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #49296a;
+  background-color: #49296a;
+  border-radius: 100%;
+}
+
+.text {
+  font-size: 0px;
+  text-align: left;
+}
+/* change controls */
+#input-for-food:checked ~ .controls__wrapper .labels label:nth-child(1) .span,
+#input-for-people:checked ~ .controls__wrapper .labels label:nth-child(2) .span,
+#input-for-studying:checked
+  ~ .controls__wrapper
+  .labels
+  label:nth-child(3)
+  .span,
+#input-for-suffering:checked
+  ~ .controls__wrapper
+  .labels
+  label:nth-child(4)
+  .span {
+  background-color: transparent;
+}
+
+/* show photos */
+#input-for-food:checked ~ .photos #food img,
+#input-for-people:checked ~ .photos #people img,
+#input-for-studying:checked ~ .photos #studying img,
+#input-for-suffering:checked ~ .photos #suffering img {
+  animation: slider 2s;
+  width: 100%;
+  height: auto;
+  display: block;
+  -webkit-box-shadow: 0px 17px 17px 3px rgba(114, 114, 114, 0.6);
+  -moz-box-shadow: 0px 17px 17px 3px rgba(114, 114, 114, 0.6);
+  box-shadow: 0px 17px 17px 3px rgba(114, 114, 114, 0.6);
+}
+
+/* show texts*/
+#input-for-food:checked ~ .controls__wrapper .texts .food,
+#input-for-people:checked ~ .controls__wrapper .texts .people,
+#input-for-studying:checked ~ .controls__wrapper .texts .studying,
+#input-for-suffering:checked ~ .controls__wrapper .texts .suffering {
+  font-size: 1.7em;
+  animation: sliderText 2s;
+}
+
+@media screen and (max-width: 720px) {
+  .controls__wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .labels {
+    margin-bottom: 10px;
+  }
+  .texts {
+    width: 100%;
+  }
+}
+
+/* animation for photos */
+@keyframes slider {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* animation for text */
+@keyframes sliderText {
+  0% {
+    opacity: 0;
+    transform: translateX(70px);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
