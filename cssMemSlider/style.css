@@ -32,12 +32,9 @@ input {
 }
 .controls__wrapper {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-direction: row-reverse;
-}
-.text {
-  font-size: 0px;
-  text-align: left;
 }
 
 .labels {
@@ -49,8 +46,8 @@ input {
 label {
   box-sizing: border-box;
   display: flex;
-  width: 50px;
-  height: 50px;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 100%;
   cursor: pointer;
   padding: 5px;
@@ -58,36 +55,25 @@ label {
   align-items: center;
 }
 label:hover span {
-  background-color: #fff;
+  background-color: #f0c4ff;
+}
+label:active span {
+  background-color: #2f0d4f;
 }
 .span {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 1.5rem;
+  height: 1.5rem;
   border: 2px solid #49296a;
   background-color: #49296a;
   border-radius: 100%;
 }
-@keyframes slider {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+
+.text {
+  font-size: 0px;
+  text-align: left;
 }
-@keyframes sliderText {
-  0% {
-    opacity: 0;
-    transform: translateX(70px);
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0px);
-  }
-}
+/* change controls */
 #input-for-food:checked ~ .controls__wrapper .labels label:nth-child(1) .span,
 #input-for-people:checked ~ .controls__wrapper .labels label:nth-child(2) .span,
 #input-for-studying:checked
@@ -103,6 +89,7 @@ label:hover span {
   background-color: transparent;
 }
 
+/* show photos */
 #input-for-food:checked ~ .photos #food img,
 #input-for-people:checked ~ .photos #people img,
 #input-for-studying:checked ~ .photos #studying img,
@@ -115,6 +102,8 @@ label:hover span {
   -moz-box-shadow: 0px 17px 17px 3px rgba(114, 114, 114, 0.6);
   box-shadow: 0px 17px 17px 3px rgba(114, 114, 114, 0.6);
 }
+
+/* show texts*/
 #input-for-food:checked ~ .controls__wrapper .texts .food,
 #input-for-people:checked ~ .controls__wrapper .texts .people,
 #input-for-studying:checked ~ .controls__wrapper .texts .studying,
@@ -123,7 +112,7 @@ label:hover span {
   animation: sliderText 2s;
 }
 
-@media screen and (max-width: 737px) {
+@media screen and (max-width: 720px) {
   .controls__wrapper {
     flex-direction: column;
     justify-content: center;
@@ -131,5 +120,32 @@ label:hover span {
   }
   .labels {
     margin-bottom: 10px;
+  }
+  .texts {
+    width: 100%;
+  }
+}
+
+/* animation for photos */
+@keyframes slider {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* animation for text */
+@keyframes sliderText {
+  0% {
+    opacity: 0;
+    transform: translateX(70px);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0px);
   }
 }
